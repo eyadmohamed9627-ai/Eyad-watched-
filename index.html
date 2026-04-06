@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eyad Watched | شاهد فور يو</title>
+    <title>Eyad Watched</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <div class="logo">Eyad <span>Watched</span></div>
-        <ul>
+
+    <nav style="display: flex; justify-content: space-between; padding: 20px; background: #000; color: #fff;">
+        <div style="font-size: 24px; font-weight: bold;">Eyad <span style="color: #8a2be2;">Watched</span></div>
+        <ul style="display: flex; list-style: none; gap: 15px;">
             <li>الرئيسية</li>
             <li>مسلسلات</li>
-            <li>أفلام</li>
         </ul>
     </nav>
 
-    <div class="hero">
-        <h1>عالم الترفيه بين يديك</h1>
-        <p>شاهد أحدث الأفلام والمسلسلات بجودة عالية</p>
+    <div style="text-align: center; padding: 50px 20px; background: #0f1014; color: white;">
+        <h1 style="font-size: 3rem; margin-bottom: 10px;">عالم الترفيه بين يديك</h1>
+        <p style="font-size: 1.2rem; opacity: 0.8;">شاهد أحدث الأفلام والمسلسلات بجودة عالية</p>
     </div>
 
-    <main id="main"></main>
+    <main id="main" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 20px; background: #0f1014; min-height: 500px;"></main>
 
     <script src="script.js"></script>
 </body>
