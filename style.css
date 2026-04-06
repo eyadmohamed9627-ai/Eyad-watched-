@@ -1,0 +1,70 @@
+body {
+    background-color: #0f1014;
+    color: white;
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo { font-size: 24px; font-weight: bold; }
+.logo span { color: #8a2be2; }
+
+nav ul { display: flex; list-style: none; gap: 20px; }
+
+.hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(15, 16, 20, 0.5), #0f1014), url('https://source.unsplash.com/1600x900/?cinema');
+    background-size: cover;
+    text-align: center;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 40px;
+}
+
+.movie {
+    background-color: #1a1c22;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.movie:hover { transform: scale(1.05); }
+
+.movie img { width: 100%; display: block; }
+
+.movie-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.movie-info h3 { font-size: 16px; margin: 0 0 10px; }
+
+.play-btn {
+    background: #8a2be2;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+}
