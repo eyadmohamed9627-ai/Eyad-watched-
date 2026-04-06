@@ -4,9 +4,10 @@ const main = document.getElementById('main');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
 
-// 1. جلب المحتوى (المصري + التريند)
+// 1. جلب المحتوى (المصري أولاً ثم التريند)
 async function fetchHomeContent() {
-    const egUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_origin_country=EG&language=ar&sort_by=popularity.desc`;
+    // الرابط ده بيجبر السيرفر يدور على أفلام ومسلسلات إنتاج مصر
+    const egUrl = `https://api.themoviedb.org/3/discover/multi?api_key=${API_KEY}&with_origin_country=EG&language=ar&sort_by=popularity.desc`;
     const trendUrl = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=ar`;
 
     try {
@@ -15,17 +16,21 @@ async function fetchHomeContent() {
         const egData = await egRes.json();
         const trendData = await trendRes.json();
 
-        if(egData.results.length > 0) renderSection(egData.results, 'أفلام ومسلسلات مصرية');
-        renderSection(trendData.results, 'اكتشف عالم الترفيه');
+        // عرض المحتوى المصري في قسم لوحده
+        if(egData.results && egData.results.length > 0) {
+            renderSection(egData.results, 'أحدث الأعمال المصرية 🇪🇬');
+        }
+        
+        // عرض التريند العالمي
+        renderSection(trendData.results, 'اكتشف عالم الترفيه 🍿');
     } catch (err) { console.error("خطأ في التحميل"); }
 }
 
 function renderSection(movies, title) {
-    const sectionTitle = document.createElement('h2');
-    sectionTitle.style.padding = '20px 20px 0';
-    sectionTitle.style.color = '#8a2be2';
-    sectionTitle.innerText = title;
-    main.appendChild(sectionTitle);
+    const titleEl = document.createElement('h2');
+    titleEl.className = 'section-title';
+    titleEl.innerText = title;
+    main.appendChild(titleEl);
 
     const grid = document.createElement('div');
     grid.className = 'movies-grid';
@@ -47,25 +52,25 @@ function renderSection(movies, title) {
     main.appendChild(grid);
 }
 
-// 2. مشغل الفيديو بملء الشاشة
+// 2. مشغل الفيديو (تحسين الحجم والتحكم)
 function playVideo(id, type) {
     const playerUrl = `https://vidsrc.to/embed/${type}/${id}`;
     const videoDiv = document.createElement('div');
     videoDiv.className = 'video-container';
     videoDiv.innerHTML = `
-        <button class="close-btn" onclick="this.parentElement.remove()">إغلاق X</button>
-        <iframe src="${playerUrl}" allowfullscreen></iframe>
+        <div class="video-header">
+            <button class="close-btn" onclick="this.parentElement.parentElement.remove()">إغلاق X</button>
+        </div>
+        <iframe src="${playerUrl}" allowfullscreen scrolling="no"></iframe>
     `;
     document.body.appendChild(videoDiv);
 }
 
-// 3. البحث وسجل البحث
+// 3. البحث
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const term = search.value;
-    if(term) {
-        performSearch(term);
-        addToHistory(term);
+    if(search.value) {
+        performSearch(search.value);
         search.value = '';
     }
 });
@@ -78,20 +83,4 @@ async function performSearch(term) {
     renderSection(data.results, `نتائج البحث عن: ${term}`);
 }
 
-function addToHistory(term) {
-    let history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-    if(!history.includes(term)) {
-        history.unshift(term);
-        localStorage.setItem('searchHistory', JSON.stringify(history.slice(0, 5)));
-    }
-    displayHistory();
-}
-
-function displayHistory() {
-    const historyBox = document.getElementById('search-history');
-    const history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-    historyBox.innerHTML = history.map(t => `<span class="history-item" onclick="performSearch('${t}')">${t}</span>`).join('');
-}
-
 fetchHomeContent();
-displayHistory();
