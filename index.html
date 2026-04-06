@@ -7,22 +7,22 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="background: #0f1014; color: white; margin: 0; font-family: 'Cairo', sans-serif;">
 
-    <nav style="display: flex; justify-content: space-between; padding: 20px; background: #000; color: #fff;">
+    <nav style="display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(0,0,0,0.9);">
         <div style="font-size: 24px; font-weight: bold;">Eyad <span style="color: #8a2be2;">Watched</span></div>
-        <ul style="display: flex; list-style: none; gap: 15px;">
-            <li>الرئيسية</li>
-            <li>مسلسلات</li>
+        <ul style="display: flex; list-style: none; gap: 20px;">
+            <li style="cursor: pointer;">الرئيسية</li>
+            <li style="cursor: pointer;">مسلسلات</li>
         </ul>
     </nav>
 
-    <div style="text-align: center; padding: 50px 20px; background: #0f1014; color: white;">
-        <h1 style="font-size: 3rem; margin-bottom: 10px;">عالم الترفيه بين يديك</h1>
-        <p style="font-size: 1.2rem; opacity: 0.8;">شاهد أحدث الأفلام والمسلسلات بجودة عالية</p>
+    <div style="text-align: center; padding: 100px 20px; background: linear-gradient(rgba(15,16,20,0.5), #0f1014);">
+        <h1 style="font-size: 3rem; margin: 0;">عالم الترفيه بين يديك</h1>
+        <p style="font-size: 1.2rem; opacity: 0.8; margin-top: 10px;">شاهد أحدث الأفلام والمسلسلات بجودة عالية</p>
     </div>
 
-    <main id="main" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 20px; background: #0f1014; min-height: 500px;"></main>
+    <main id="main" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 30px; padding: 40px;"></main>
 
     <script src="script.js"></script>
 </body>
