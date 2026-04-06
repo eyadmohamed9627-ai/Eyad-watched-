@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eyad Watched | شاهد فور يو</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Eyad Watched</title>
+    <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <nav>
-        <div class="logo">Eyad <span>Watched</span></div>
+<body style="background: #0f1014; color: white; margin: 0; font-family: 'Cairo', sans-serif;">
+
+    <nav style="display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #000; position: fixed; width: 90%; z-index: 1000;">
+        <div style="font-size: 22px; font-weight: bold;">Eyad <span style="color: #8a2be2;">Watched</span></div>
         <form id="form">
-            <input type="text" id="search" placeholder="ابحث عن فيلم أو مسلسل...">
+            <input type="text" id="search" placeholder="ابحث هنا..." style="padding: 8px; border-radius: 20px; border: none; background: #222; color: white;">
         </form>
     </nav>
 
-    <div class="hero">
+    <div style="padding: 120px 20px 40px; text-align: center;">
         <h1>عالم الترفيه بين يديك</h1>
-        <p>أحدث المسلسلات والأفلام المصرية والعالمية</p>
-        <div id="search-history-container">
-            <span>عمليات البحث الأخيرة:</span>
-            <div id="search-history"></div>
-        </div>
+        <div id="search-history" style="color: #8a2be2; margin-top: 10px;"></div>
     </div>
 
     <main id="main"></main>
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
