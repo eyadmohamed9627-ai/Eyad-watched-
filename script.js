@@ -4,9 +4,9 @@ const main = document.getElementById('main');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
 
-// 1. جلب المحتوى (المصري أولاً ثم التريند)
+// 1. جلب المحتوى المصري والتريند
 async function fetchHomeContent() {
-    // الرابط ده بيجبر السيرفر يدور على أفلام ومسلسلات إنتاج مصر
+    // جلب الأفلام والمسلسلات المصرية (EG)
     const egUrl = `https://api.themoviedb.org/3/discover/multi?api_key=${API_KEY}&with_origin_country=EG&language=ar&sort_by=popularity.desc`;
     const trendUrl = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=ar`;
 
@@ -16,19 +16,19 @@ async function fetchHomeContent() {
         const egData = await egRes.json();
         const trendData = await trendRes.json();
 
-        // عرض المحتوى المصري في قسم لوحده
         if(egData.results && egData.results.length > 0) {
-            renderSection(egData.results, 'أحدث الأعمال المصرية 🇪🇬');
+            renderSection(egData.results, 'أفلام ومسلسلات مصرية 🇪🇬');
         }
-        
-        // عرض التريند العالمي
         renderSection(trendData.results, 'اكتشف عالم الترفيه 🍿');
-    } catch (err) { console.error("خطأ في التحميل"); }
+    } catch (err) { 
+        console.error("خطأ في الاتصال بالسيرفر");
+    }
 }
 
 function renderSection(movies, title) {
     const titleEl = document.createElement('h2');
-    titleEl.className = 'section-title';
+    titleEl.style.padding = '20px 5%';
+    titleEl.style.color = '#8a2be2';
     titleEl.innerText = title;
     main.appendChild(titleEl);
 
@@ -52,7 +52,7 @@ function renderSection(movies, title) {
     main.appendChild(grid);
 }
 
-// 2. مشغل الفيديو (تحسين الحجم والتحكم)
+// 2. مشغل الفيديو بملء الشاشة
 function playVideo(id, type) {
     const playerUrl = `https://vidsrc.to/embed/${type}/${id}`;
     const videoDiv = document.createElement('div');
@@ -61,7 +61,7 @@ function playVideo(id, type) {
         <div class="video-header">
             <button class="close-btn" onclick="this.parentElement.parentElement.remove()">إغلاق X</button>
         </div>
-        <iframe src="${playerUrl}" allowfullscreen scrolling="no"></iframe>
+        <iframe src="${playerUrl}" allowfullscreen></iframe>
     `;
     document.body.appendChild(videoDiv);
 }
